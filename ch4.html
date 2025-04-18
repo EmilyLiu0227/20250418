@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精緻購物網站</title>
+    <style>
+        /* 基本設置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "left main right"
+                "footer footer footer";
+            grid-template-columns: 200px 3fr 1fr;
+            grid-template-rows: 100px 1fr 80px;
+            height: 100vh;
+        }
+
+        .container > div {
+            padding: 20px;
+        }
+
+        /* 標題區 */
+        .header {
+            grid-area: header;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+        }
+
+        .nav {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav li {
+            display: inline;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* 側邊欄 */
+        .left {
+            grid-area: left;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+        }
+
+        .left h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .left ul {
+            list-style: none;
+        }
+
+        .left ul li {
+            margin-bottom: 15px;
+        }
+
+        .left ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .left ul li a:hover {
+            color: #007BFF;
+        }
+
+        /* 主要內容區 */
+        .main {
+            grid-area: main;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .main .product {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .product p {
+            color: #777;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .product .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .product .btn {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .product .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* 購物車 */
+        .right {
+            grid-area: right;
+            background-color: #fff;
+            border-left: 1px solid #ddd;
+        }
+
+        .right h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .right .cart-item {
+            margin-bottom: 20px;
+        }
+
+        .right .cart-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .right .cart-item p {
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .right .cart-item .price {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .right .total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* 底部區 */
+        .footer {
+            grid-area: footer;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "main"
+                    "footer";
+            }
+
+            .main {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .left {
+                display: none;
+            }
+
+            .right {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 頭部區域 -->
+        <div class="header">
+            <h1>HOLA購物網</h1>
+            <ul class="nav">
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">產品分類</a></li>
+                <li><a href="#">關於我們</a></li>
+                <li><a href="#">聯繫我們</a></li>
+            </ul>
+        </div>
+
+        <!-- 左側區域（商品類別） -->
+        <div class="left">
+            <h2>商品類別</h2>
+            <ul>
+                <li><a href="#">兒童遊戲類</a></li>
+                <li><a href="#">服裝</a></li>
+                <li><a href="#">家居用品</a></li>
+                <li><a href="#">配件</a></li>
+                <li><a href="#">美容產品</a></li>
+            </ul>
+        </div>
+
+        <!-- 主要內容區（商品展示） -->
+<div class="main">
+
+    <!-- 兒童遊戲類 -->
+    <div class="category">
+        <h2>兒童遊戲類</h2>
+        <div class="product">
+            <img src="popo.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="紓壓大便玩具">
+            <h3>紓壓大便玩具</h3>
+            <p>捏一捏超舒壓，療癒必備。</p>
+            <div class="price">$1000</div>
+            <button class="btn">加入購物車</button>
+        </div>
+        <div class="product">
+            <img src="talkingWatermelon.jpeg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="會說話的西瓜">
+            <h3>會說話的西瓜</h3>
+            <p>會講笑話的超有趣玩具。</p>
+            <div class="price">$1500</div>
+            <button class="btn">加入購物車</button>
+        </div>
+        <div class="product">
+            <img src="eatyou.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="趣味咬手遊戲">
+            <h3>趣味咬手遊戲</h3>
+            <p>刺激又好笑的小遊戲。</p>
+            <div class="price">$2000</div>
+            <button class="btn">加入購物車</button>
+        </div>
+    </div>
+
+    <!-- 服裝 -->
+    <div class="category">
+        <h2>服裝</h2>
+        <div class="product">
+            <img src="shirt.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="T恤">
+            <h3>基本款T恤</h3>
+            <p>透氣舒適，四季皆宜。</p>
+            <div class="price">$500</div>
+            <button class="btn">加入購物車</button>
+        </div>
+        <div class="product">
+            <img src="jacket.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="外套">
+            <h3>連帽外套</h3>
+            <p>防風保暖，休閒百搭。</p>
+            <div class="price">$1200</div>
+            <button class="btn">加入購物車</button>
+        </div>
+        <div class="product">
+            <img src="pants.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="長褲">
+            <h3>運動長褲</h3>
+            <p>彈性布料，運動自在。</p>
+            <div class="price">$900</div>
+            <button class="btn">加入購物車</button>
+        </div>
+    </div>
+
+    <!-- 家居用品 -->
+    <div class="category">
+        <h2>家居用品</h2>
+        <div class="product">
+            <img src="lamp.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="檯燈">
+            <h3>LED 檯燈</h3>
+            <p>護眼、省電又美觀。</p>
+            <div class="price">$700</div>
+            <button class="btn">加入購物車</button>
+        </div>
+        <div class="product">
+            <img src="cushion.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="靠墊">
+            <h3>舒適靠墊</h3>
+            <p>沙發必備的居家良伴。</p>
+            <div class="price">$400</div>
+            <button class="btn">加入購物車</button>
+        </div>
+        <div class="product">
+            <img src="storage.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=無圖片'" alt="收納箱">
+            <h3>多功能收納箱</h3>
+            <p>整齊收納，生活有序。</p>
+            <div class="price">$350</div>
+            <button class="btn">加入購物車</button>
+        </div>
+    </div>
+
+</div>
+
+
+        <!-- 右側區域（購物車） -->
+        <div class="right">
+            <h2>購物車</h2>
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/50" alt="商品1">
+                <p>商品名稱 1 <span class="price">$1000</span></p>
+            </div>
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/50" alt="商品2">
+                <p>商品名稱 2 <span class="price">$1500</span></p>
+            </div>
+            <div class="total">
+                總計：$2500
+            </div>
+       
